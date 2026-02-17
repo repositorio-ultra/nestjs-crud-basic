@@ -1,0 +1,4 @@
+export const jwtConstants = {
+  secret:
+    'MINHA SUPERSECRETA CHAVE DE ASSINATURA PARA JWT, NÃO COMPARTILHE COM NINGUÉM',
+};

@@ -1,0 +1,15 @@
+services:
+  dev-db:
+    image: postgres:latest
+    container_name: dev-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nest_api_example
+    ports:
+      - '5432:5432'
+    networks:
+    - freecodecamp
+networks:
+  freecodecamp:
+    driver: bridge
