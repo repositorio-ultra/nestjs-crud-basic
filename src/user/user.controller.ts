@@ -1,9 +1,9 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { Body, Controller, Get, Patch, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '../auth/auth.guard';
 import { UserService } from './user.service';
-import { GetUser } from 'src/auth/decorator';
-import { JwtPayload } from 'src/interfaces/payload-jtwt.interface';
-
+import { GetUser } from '../auth/decorator';
+import type { JwtPayload } from '../interfaces/payload-jtwt.interface';
+import { EditUserDto } from './dto';
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
@@ -19,5 +19,11 @@ export class UserController {
       };
     }
     return null;
+  }
+
+  @UseGuards(AuthGuard) //Não pode esquecer senão não pega os dados do JWT
+  @Patch()
+  async editUser(@GetUser() user: JwtPayload, @Body() dto: EditUserDto) {
+    return await this.userService.editUser(user.sub, dto);
   }
 }

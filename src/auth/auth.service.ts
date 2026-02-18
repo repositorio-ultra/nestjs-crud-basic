@@ -4,11 +4,12 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
-import { PrismaService } from '../../src/prisma/prisma.service';
+
 import { AuthDto } from './dto';
 import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
@@ -18,9 +19,9 @@ export class AuthService {
     private config: ConfigService,
   ) {}
   async signup(dto: AuthDto) {
-    console.log(dto);
+    //console.log(dto);
     const hash = await argon.hash(dto.password);
-    console.log({ hash: typeof hash });
+    //console.log({ hash: typeof hash });
     try {
       const user = await this.prisma.user.create({
         data: {
@@ -33,7 +34,7 @@ export class AuthService {
           createdAt: true,
         },
       });
-      console.log({ user });
+      //console.log({ user });
       return this.signToken(user.id, user.email);
     } catch (error) {
       throw new ForbiddenException('Bad Credentials');

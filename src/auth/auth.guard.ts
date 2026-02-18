@@ -6,9 +6,9 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { JwtPayload } from 'src/interfaces/payload-jtwt.interface';
-import { RequestWithUser } from 'src/interfaces/request-with-user.interface';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtPayload } from '../interfaces/payload-jtwt.interface';
+import { RequestWithUser } from '../interfaces/request-with-user.interface';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
