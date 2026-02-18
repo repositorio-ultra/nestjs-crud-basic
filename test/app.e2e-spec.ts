@@ -182,7 +182,7 @@ describe('AppController (e2e)', () => {
           .delete('/bookmarks/{id}')
           .withPathParams('id', '$S{bookmarkId}')
           .withHeaders({ Authorization: 'Bearer $S{userAt}' })
-          .expectStatus(200);
+          .expectStatus(204);
         //.inspect(); // Expecting an empty array since no bookmarks have been created yet
       });
       it('should get empty bookmarks list again', () => {

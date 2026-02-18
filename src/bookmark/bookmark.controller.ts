@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseIntPipe,
   Patch,
@@ -53,6 +55,7 @@ export class BookmarkController {
     return this.bookmarkservice.editBookMarkById(sub, dto, id);
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   deleteBookMarkById(
     @GetUser() userId: JwtPayload,
